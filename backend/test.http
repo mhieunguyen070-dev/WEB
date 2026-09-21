@@ -1,0 +1,31 @@
+### 1. Dang ky
+POST http://127.0.0.1:8000/api/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Nguyễn Văn A",
+  "email": "a@gmail.com",
+  "password": "12345678",
+  "password_confirmation": "12345678"
+}
+
+### 2. Dang nhap
+POST http://127.0.0.1:8000/api/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "a@gmail.com",
+  "password": "12345678"
+}
+
+### 3. Nguoi dung hien tai (thay chu TOKEN bang token that)
+GET http://127.0.0.1:8000/api/me
+Accept: application/json
+Authorization: Bearer TOKEN
+
+### 4. Dang xuat (thay chu TOKEN bang token that)
+POST http://127.0.0.1:8000/api/logout
+Accept: application/json
+Authorization: Bearer TOKEN
