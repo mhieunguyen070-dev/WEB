@@ -1,0 +1,77 @@
+   @token = 4|C8E0MyNmDgmT0vz2pIYQZE9HVb200Zcomr3FXqj912fcb4d0
+   ### 1. Dang ky
+POST http://127.0.0.1:8000/api/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Nguyễn Minh Hiếu",
+  "email": "b@gmail.com",
+  "password": "12345679",
+  "password_confirmation": "12345679"
+}
+
+### 2. Dang nhap
+POST http://127.0.0.1:8000/api/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "a@gmail.com",
+  "password": "12345678"
+}
+
+### 3. Nguoi dung hien tai (thay chu TOKEN bang token that)
+GET http://127.0.0.1:8000/api/me
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 4. Dang xuat (thay chu TOKEN bang token that)
+POST http://127.0.0.1:8000/api/logout
+Accept: application/json
+Authorization: Bearer {{token}}
+### 5. Dat hang
+POST http://127.0.0.1:8000/api/orders
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "receiver_name": "Nguyễn Văn A",
+  "phone": "0901234567",
+  "address": "123 Lê Lợi, Quận 1, TP.HCM",
+  "note": "Giao giờ hành chính",
+  "items": [
+    { "product_id": 1, "quantity": 2 },
+    { "product_id": 3, "quantity": 1 }
+  ]
+}
+
+### 6. Dat qua so luong ton kho
+POST http://127.0.0.1:8000/api/orders
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "receiver_name": "Nguyễn Văn A",
+  "phone": "0901234567",
+  "address": "123 Lê Lợi, Quận 1, TP.HCM",
+  "items": [
+    { "product_id": 3, "quantity": 999 }
+  ]
+}
+
+### 7. Danh sach don hang cua toi
+GET http://127.0.0.1:8000/api/orders
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 8. Chi tiet don hang (doi so 1 thanh id don that)
+GET http://127.0.0.1:8000/api/orders/1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 9. Khong co token (phai ra 401)
+GET http://127.0.0.1:8000/api/orders
+Accept: application/json
